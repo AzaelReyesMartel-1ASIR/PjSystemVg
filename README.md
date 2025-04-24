@@ -10,7 +10,37 @@ Un sistema de juego por consola, basado en un RPG por turnos. No guarda datos en
 
 ```
 
-Aquí pondremos la estructura del proyecto
+eldenpro/
+├── controller/                       # Aquí están los controladores del juego
+│   ├── BatallaController.java       # Controla lo que pasa en una batalla
+│   └── GameController.java          # Controla el funcionamiento general del juego
+
+├── model/                           # Todo lo que tiene que ver con los personajes y lógica del juego
+│   ├── batalla/
+│   │   └── Batalla.java             # Se encarga de simular una batalla entre personajes
+│   ├── enemigos/
+│   │   └── Enemigo.java             # (Posible clase futura para enemigos del juego)
+│   ├── Inventario/
+│   │   └── Item.java                # Para manejar los objetos que puede tener un personaje
+│   ├── personajes/
+│   │   ├── Personaje.java           # Clase base para todos los personajes
+│   │   ├── Guerrero.java            # Personaje que lucha cuerpo a cuerpo
+│   │   ├── Mago.java                # Personaje que usa magia
+│   │   ├── Arquero.java             # Ataca con flechas desde lejos
+│   │   ├── Hechicero.java           # Usa hechizos más avanzados
+│   │   └── Asesino.java             # Muy rápido y sigiloso
+│   └── habilidades/                 # Aquí están las interfaces con habilidades especiales
+│       ├── Curable.java             # Para los personajes que se pueden curar
+│       ├── Defendible.java          # Para los que pueden defenderse
+│       ├── Magico.java              # Para los que usan magia
+│       ├── Movilizable.java         # Para los que se pueden mover más rápido o especial
+│       └── Volador.java             # Para los que pueden volar
+
+├── view/                            # Todo lo que ve el usuario en consola
+│   ├── ConsolaView.java             # Muestra la info del juego por pantalla
+│   └── Menus.java                   # Muestra los menús del juego
+
+├── Main.java                        # Es el punto de entrada, donde empieza el programa
 
 ```
 
