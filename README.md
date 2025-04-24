@@ -10,7 +10,31 @@ Un sistema de juego por consola, basado en un RPG por turnos. No guarda datos en
 
 ```
 
-Aquí pondremos la estructura del proyecto
+eldenpro/
+├── controller/                   # Controladores del flujo del juego
+│   ├── BatallaController.java   # Controla la lógica de las batallas
+│   └── GameController.java      # Control general del flujo del juego
+|
+├── model/                       # Lógica del juego
+│   ├── batalla/
+│   │   └── Batalla.java         # Simulación de combates
+│   ├── enemigos/
+│   │   └── Enemigo.java         # Posible clase futura para enemigos no jugables
+│   ├── Inventario/
+│   │   └── Item.java            # Gestión de ítems del juego
+│   └── personajes/
+│       ├── Personaje.java       # Clase base abstracta para personajes
+│       ├── Guerrero.java        # Personaje físico
+│       ├── Mago.java            # Personaje mágico
+│       ├── Arquero.java         # Personaje físico con agilidad
+│       ├── Hechicero.java       # Personaje mágico avanzado
+│       └── Asesino.java         # Personaje ágil y sigiloso
+|
+├── view/                        # Representación visual en consola
+│   ├── ConsolaView.java         # Muestra mensajes y opciones al usuario
+│   └── Menus.java               # Menús interactivos por consola
+|
+├── Main.java                    # Clase principal para ejecutar la aplicación
 
 ```
 
