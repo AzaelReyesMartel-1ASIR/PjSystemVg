@@ -19,11 +19,13 @@ eldenpro/
 │   ├── batalla/
 │   │   └── Batalla.java             # Se encarga de simular una batalla entre personajes
 │   ├── enemigos/
-│   │   └── Enemigo.java             # (Posible clase futura para enemigos del juego)
+│   │   └── Enemigo.java             # Clase para enemigos del juego
 │   ├── Inventario/
 │   │   └── Item.java                # Para manejar los objetos que puede tener un personaje
 │   ├── personajes/
 │   │   ├── Personaje.java           # Clase base para todos los personajes
+│   │   ├── PersonajeFisico.java     # Subclase para personajes físicos
+│   │   ├── PersonajeMagico.java     # Subclase para personajes mágicos
 │   │   ├── Guerrero.java            # Personaje que lucha cuerpo a cuerpo
 │   │   ├── Mago.java                # Personaje que usa magia
 │   │   ├── Arquero.java             # Ataca con flechas desde lejos
@@ -40,7 +42,7 @@ eldenpro/
 │   ├── ConsolaView.java             # Muestra la info del juego por pantalla
 │   └── Menus.java                   # Muestra los menús del juego
 
-├── Main.java                        # Es el punto de entrada, donde empieza el programa
+├── Juego.java                        # Es el punto de entrada, donde empieza el programa
 
 ```
 
