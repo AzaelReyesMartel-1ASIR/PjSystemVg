@@ -1,6 +1,8 @@
 package eldenpro.model.personajes;
 
-public class Mago extends PersonajeMagico {
+import eldenpro.model.habilidades.*;
+
+public class Mago extends PersonajeMagico implements Magico, Curable{
     private int magia;
     private int mana;
     private int sabiduria;
@@ -12,26 +14,38 @@ public class Mago extends PersonajeMagico {
         this.sabiduria = sabiduria;
     }
 
+
+
     // Metodo toString para mostrar mana y sabiduria
     @Override
     public String toString() {
-        return "Personaje Mágico: -- nombre=" + nombre + ", nivel=" + nivel + ", salud=" + salud + ", magia=" + magia + ", mana="+ mana +", sabiduria="+ sabiduria +" --";
+        return "Personaje Mágico: -- nombre=" + getNombre() + ", nivel=" + getNivel() + ", salud=" + getSalud() + ", magia=" + magia + ", mana="+ mana +", sabiduria="+ sabiduria +" --";
     }
 
     @Override
     public void atacar() {
-        System.out.println(nombre + " lanza un hechizo mágico común!");
+        System.out.println(getNombre() + " lanza un hechizo mágico común!");
     }
 
     public void lanzarHechizo(){
 
-        System.out.println(nombre + " lanza una bola de fuego!");
+        System.out.println(getNombre() + " lanza una bola de fuego!");
 
     }
      
     public void regenerarMana(){
 
-        System.out.println(nombre + " aprovecha para recuperar maná para el siguiente ataque!");
+        System.out.println(getNombre() + " aprovecha para recuperar maná para el siguiente ataque!");
 
+    }
+
+    @Override
+    public void regeneracionVida() {
+        System.out.println(getNombre() +" ¡¡¡UTILIZA SU HABILIDAD Y REGENERA VIDA!!!");
+    }
+
+    @Override
+    public void magiArcana() {
+        System.out.println(getNombre() +"¡¡¡UTILIZA SU MAGIA ARCANA Y LANZA UNA LLUVIA DE METEORITOS GIGANTES!!!");
     }
 }

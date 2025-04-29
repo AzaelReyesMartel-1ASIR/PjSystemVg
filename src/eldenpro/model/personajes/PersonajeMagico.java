@@ -8,7 +8,7 @@ public abstract class PersonajeMagico extends Personaje {
     }
 
     public void regenerarMana() {
-        System.out.println(nombre + " regenera maná con energía arcana.");
+        System.out.println(getNombre() + " regenera maná con energía arcana.");
     }
 
     @Override

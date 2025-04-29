@@ -1,6 +1,8 @@
 package eldenpro.model.personajes;
 
-public class Guerrero extends PersonajeFisico {
+import eldenpro.model.habilidades.*;
+
+public class Guerrero extends PersonajeFisico implements Defendible{
 
     private int fuerza;
     private int armadura;
@@ -16,21 +18,31 @@ public class Guerrero extends PersonajeFisico {
     // Metodo toString para mostrar Fuerza y armadura
     @Override
     public String toString() {
-        return "Personaje Físico: -- nombre=" + nombre + ", nivel=" + nivel + ", salud=" + salud + ", fuerza="+ fuerza +", armadura="+ armadura +", escudo="+ escudo +" --";
+        return "Personaje Físico: -- nombre=" + getNombre() + ", nivel=" + getNivel() + ", salud=" + getSalud() + ", fuerza="+ fuerza +", armadura="+ armadura +", escudo="+ escudo +" --";
     }
 
     @Override
     public void atacar() {
-        System.out.println(nombre + " ataca con un golpe físico!");
+        System.out.println(getNombre() + " ataca con un golpe físico!");
     }
 
     public void cargarAtaque(){
 
-        System.out.println(nombre + " está cargando su próximo ataque...");
+        System.out.println(getNombre() + " está cargando su próximo ataque...");
 
     }
 
+    @Override
+    public void aumentarResistencia() {
+        System.out.println("El Guerrero "+getNombre()+" aumenta su resistencia!");
+    }
+
     public void defender() {
-        System.out.println(nombre + " se defiende usando su armadura!");
+        System.out.println(getNombre() + " se defiende usando su armadura!");
+    }
+
+    @Override
+    public void defensaParry() {
+        System.out.println(getNombre()+" ¡¡¡UTILIZA SU HABILIDAD `PARRY` Y LANZA UN CONTRAGOLPE!!!");
     }
 }
