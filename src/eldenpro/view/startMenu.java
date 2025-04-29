@@ -1,5 +1,5 @@
 package eldenpro.view;
 
-public class Menus {
+public class startMenu {
     
 }

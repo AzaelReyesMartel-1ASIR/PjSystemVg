@@ -1,5 +1,5 @@
 package eldenpro.model.habilidades;
 
-interface Movilizable {
+public interface mobilizable {
     
 }

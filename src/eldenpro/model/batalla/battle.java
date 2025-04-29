@@ -1,5 +1,5 @@
 package eldenpro.model.batalla;
 
-public class Batalla {
+public class battle {
     
 }

@@ -1,5 +1,5 @@
 package eldenpro.controller;
 
-public class BatallaController {
+public class caveController {
     
 }

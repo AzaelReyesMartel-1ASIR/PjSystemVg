@@ -1,6 +1,6 @@
 package eldenpro.model.habilidades;
 
-public interface Magico {
+public interface magical {
 
     public void magiArcana();
     

@@ -1,5 +1,5 @@
 package eldenpro.model.habilidades;
 
-interface Volador {
+public interface flying {
     
 }
