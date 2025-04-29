@@ -2,9 +2,9 @@ package eldenpro.model.personajes;
 
 // Superclase abstracta Personaje
 public abstract class Personaje {
-    protected String nombre;
-    protected int nivel;
-    protected int salud;
+    private String nombre;
+    private int nivel;
+    private int salud;
 
     // Constructor para inicializar atributos comunes
     public Personaje(String nombre, int nivel, int salud){
@@ -15,6 +15,18 @@ public abstract class Personaje {
 
     // Método abstracto que implementarán las subclases
     public abstract void atacar();
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public int getNivel() {
+        return nivel;
+    }
+
+    public int getSalud() {
+        return salud;
+    }
 
     // Método para mostrar la información del personaje
     public String toString() {

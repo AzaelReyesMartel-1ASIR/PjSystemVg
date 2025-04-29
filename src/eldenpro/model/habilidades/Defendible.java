@@ -1,5 +1,7 @@
 package eldenpro.model.habilidades;
 
-interface Defendible {
+public interface Defendible {
+
+    public void defensaParry();
     
 }

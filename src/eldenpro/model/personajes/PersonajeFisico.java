@@ -10,7 +10,7 @@ public abstract class PersonajeFisico extends Personaje {
 
     // Metodo propio de los personajes fisicos
     public void aumentarResistencia() {
-        this.salud += 250;
+        System.out.println("El personaje físico aumenta su resistencia!");
     }
 
     // Metodo abstracto que debe implementar cada personaje concreto

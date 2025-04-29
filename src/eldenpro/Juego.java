@@ -31,7 +31,11 @@ public class Juego {
 
                 // Llamamos a metodos especificos de Guerrero
                 g.defender();
-                g.cargarAtaque();
+                // g.cargarAtaque();
+                // g.aumentarResistencia();
+
+                // Habilidades de interfaz Defendible
+                g.defensaParry();
 
             } 
             
@@ -40,7 +44,11 @@ public class Juego {
                 
                 // Llamamos a metodos especficos de Mago
                 m.regenerarMana();
-                m.lanzarHechizo();
+                //m.lanzarHechizo();
+
+                // Habilidades de interfaz Curable y Magico
+                m.regeneracionVida();
+                m.magiArcana();
             }
 
             System.out.println("\n");

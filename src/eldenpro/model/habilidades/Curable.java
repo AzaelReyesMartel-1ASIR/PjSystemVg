@@ -1,5 +1,7 @@
 package eldenpro.model.habilidades;
 
-interface Curable {
+public interface Curable {
+
+    public void regeneracionVida();
     
 }
