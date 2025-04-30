@@ -23,7 +23,7 @@ public class archer extends physicalCaracter {
             if (Math.random() < 0.10) {
                 System.out.println("Tiro en la cabeza! El enemigo se queda inconsciente y recuperas tu flecha.");
                 finalDamage = physicalDamage * 2;
-                // TODO: enemy.recieveDamage(finalDamage);
+                enemy.receiveDamage(finalDamage, damageTypes.PSY_DMG);
             } else {
                 System.out.println("Falló. Pierdes una flecha y el turno.");
                 arrows-=2;

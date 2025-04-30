@@ -33,16 +33,24 @@ public class thief extends enemy {
     // agilidad pero poca vida
     @Override
     public void attack(character character, damageTypes damageTypes) {
-        System.out.println("El ladrón ataca con "+physicalDamage+" puntos de daño al enemigo "+character+".");
-        int maxDamage = (int) ((int) physicalDamage + agilityPoints * (0.1));
-        character.receiveDamage(maxDamage, damageTypes.PSY_DMG);
-        agilityPoints ++;
+        int opciones = (int)(Math.random() * 2) + 1; // generar un ataque aleatorio entre 1 y 2
+        switch(opciones){
+            case 1:
+                throwingBombs(character,damageTypes);
+            break;
+            case 2:
+                System.out.println("El ladrón ataca con "+physicalDamage+" puntos de daño al enemigo "+character+".");
+                int maxDamage = (int) ((int) physicalDamage + agilityPoints * (0.1));
+                character.receiveDamage(maxDamage, damageTypes.PSY_DMG);
+                agilityPoints ++;
+        }
+        
     }
 
-    public void throwingBombs(character character) {
+    public void throwingBombs(character character, damageTypes damageTypes) {
         double chance = Math.random();
         if (chance <= 0.05) {
-            System.out.println("El ladrón"+getName()+ "lanza una bomba que explota y afecta a todos los enemigos cercanos.");
+            System.out.println("El ladrón "+getName()+ " lanza una bomba que explota y afecta a todos los enemigos cercanos.");
             character.receiveDamage(100, damageTypes.PSY_DMG); // Daño fijo de la bomba explosión
         } else {
             System.out.println("El ladrón no puede lanzar una bomba.");
@@ -71,12 +79,6 @@ public class thief extends enemy {
                 setHealthPoints(getHealthPoints() - reducedDamage * 2);
             }
         }
-    }
-    
-    @Override
-    public void attackWithType(character character, damageTypes tipo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'attackWithType'");
     }
 
 

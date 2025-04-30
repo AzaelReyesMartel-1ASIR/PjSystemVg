@@ -105,9 +105,8 @@ public abstract class enemy {
         this.magicalDamage = magicalDamage;
     }
 
-    public abstract void attack(character character,damageTypes damageTypes);
+    public abstract void attack(character character, damageTypes damageTypes);
 
-    public abstract void attackWithType(character character, damageTypes tipo);
 
     public void receiveDamage(int damage, damageTypes damageTypes){
         healthPoints -= damage;

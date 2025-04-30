@@ -24,11 +24,11 @@ public abstract class character {
 
     // Getters y Setters
 
-    public String getname() {
+    public String getName() {
         return name;
     }
 
-    public int getlevel() {
+    public int getLevel() {
         return level;
     }
 

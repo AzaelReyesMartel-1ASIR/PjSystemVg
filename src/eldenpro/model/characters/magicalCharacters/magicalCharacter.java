@@ -22,28 +22,17 @@ public abstract class magicalCharacter extends character {
         return magicalPoints;
     }
 
-
-
-
     public void setMagicalPoints(int magicalPoints) {
         this.magicalPoints = magicalPoints;
     }
-
-
-
 
     public int getMagicalDamage() {
         return magicalDamage;
     }
 
-
-
-
     public void setMagicalDamage(int magicalDamage) {
         this.magicalDamage = magicalDamage;
     }
-
-
    
     // Metodo abstracto heredado de la clase character
     @Override

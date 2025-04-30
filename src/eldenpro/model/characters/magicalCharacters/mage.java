@@ -26,7 +26,7 @@ public class mage extends magicalCharacter {
             // Al no tener puntos de maná, se regeneran automaticamente los puntos por el coste de un turno
             System.out.println("¡No puede hacer daño!"); 
             System.out.println("Regenerando puntos de inteligencia...");
-            intelligencePoints += 40;
+            manaRegen();
         }
 
     }
