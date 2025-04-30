@@ -7,8 +7,8 @@ public class thief extends enemy {
     private int physicalDamage;
     private int agilityPoints; // Velocidad de ataque
 
-    public thief(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int agilityPoints) {
-        super(healthPoints, physicalArmor, magicalArmor, level, agilityPoints, agilityPoints);
+    public thief(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int agilityPoints, String name) {
+        super(healthPoints, physicalArmor, magicalArmor, level, agilityPoints, agilityPoints, name);
         this.agilityPoints = agilityPoints;
         this.physicalDamage = physicalDamage;
     }
@@ -32,7 +32,8 @@ public class thief extends enemy {
     // El ladrón solo cuenta con daño físico, tiene una daga, bombas y mucha
     // agilidad pero poca vida
     @Override
-    public void attack(character character) {
+    public void attack(character character, damageTypes damageTypes) {
+        System.out.println("El ladrón ataca con "+physicalDamage+" puntos de daño al enemigo "+character+".");
         int maxDamage = (int) ((int) physicalDamage + agilityPoints * (0.1));
         character.receiveDamage(maxDamage, damageTypes.PSY_DMG);
         agilityPoints ++;
@@ -41,7 +42,7 @@ public class thief extends enemy {
     public void throwingBombs(character character) {
         double chance = Math.random();
         if (chance <= 0.05) {
-            System.out.println("El ladrón lanza una bomba que explota y afecta a todos los enemigos cercanos.");
+            System.out.println("El ladrón"+getName()+ "lanza una bomba que explota y afecta a todos los enemigos cercanos.");
             character.receiveDamage(100, damageTypes.PSY_DMG); // Daño fijo de la bomba explosión
         } else {
             System.out.println("El ladrón no puede lanzar una bomba.");
@@ -71,6 +72,13 @@ public class thief extends enemy {
             }
         }
     }
+    
+    @Override
+    public void attackWithType(character character, damageTypes tipo) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'attackWithType'");
+    }
+
 
     @Override
     public String toString() {
@@ -83,5 +91,6 @@ public class thief extends enemy {
         "• Nivel:           " + getLevel() + "\n" +
         "=============================";
     }
+
 
 }

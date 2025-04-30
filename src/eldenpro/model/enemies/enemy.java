@@ -10,21 +10,30 @@ public abstract class enemy {
     private int level;
     private int physicalDamage;
     private int magicalDamage;
+    private String name;
 
 
-    public enemy(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int magicalDamage) {
+    public enemy(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int magicalDamage, String name) {
         this.healthPoints = healthPoints;
         this.physicalArmor = physicalArmor;
         this.magicalArmor = magicalArmor;
         this.level = level;
         this.physicalDamage = physicalDamage;
         this.magicalDamage = magicalDamage;
+        this.name = name;
     }
 
 
-    public void receiveDamage(int damage, damageTypes damageTypes){
-        healthPoints -= damage;
+    public int getName() {
+        return healthPoints;
     }
+
+
+
+    public void setName(int healthPoints) {
+        this.healthPoints = healthPoints;
+    }
+   
 
     public int getHealthPoints() {
         return healthPoints;
@@ -96,7 +105,14 @@ public abstract class enemy {
         this.magicalDamage = magicalDamage;
     }
 
-    public abstract void attack(character character);
+    public abstract void attack(character character,damageTypes damageTypes);
+
+    public abstract void attackWithType(character character, damageTypes tipo);
+
+    public void receiveDamage(int damage, damageTypes damageTypes){
+        healthPoints -= damage;
+    }
+
 
     @Override
     public String toString() {
