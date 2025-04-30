@@ -1,4 +1,4 @@
-package eldenpro.model.habilidades;
+package eldenpro.model.abilities;
 
 public interface magical {
 

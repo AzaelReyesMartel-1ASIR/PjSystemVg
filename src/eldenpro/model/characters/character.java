@@ -1,6 +1,6 @@
-package eldenpro.model.personajes;
+package eldenpro.model.characters;
 
-import eldenpro.model.enemigos.enemy;
+import eldenpro.model.enemies.enemy;
 
 // Superclase abstracta Personaje
 public abstract class character {
@@ -21,6 +21,8 @@ public abstract class character {
     // Método abstracto que implementarán las subclases
     public abstract void attack(enemy enemy);
 
+    // Getters y Setters
+
     public String getname() {
         return name;
     }
@@ -33,11 +35,6 @@ public abstract class character {
         return healthPoints;
     }
 
-    // Método para mostrar la información del personaje
-    public String toString() {
-        return "Personaje [name=" + name + ", level=" + level + ", healthPoints=" + healthPoints + "]";
-    }
-
     public int getArmor() {
         return armor;
     }
@@ -45,7 +42,11 @@ public abstract class character {
     public void setArmor(int armor){
         this.armor = armor;
     }
-    
+
+    // Método para mostrar la información del personaje
+    public String toString() {
+        return "Personaje [name=" + name + ", level=" + level + ", healthPoints=" + healthPoints + "]";
+    }
 
     // Método hashCode() para generar código único del objeto
     @Override
@@ -67,6 +68,7 @@ public abstract class character {
         return name == character.name && level == character.level && healthPoints == character.healthPoints;
     }
 
+    // Metodo para recibir daño
     public void recieveDamage(int damage){
         double reduction = this.armor / 100.0;
         double finalDamage = damage - (damage * reduction);
@@ -75,6 +77,7 @@ public abstract class character {
         this.healthPoints -= roundedDamage;        
     }
 
+    // Metodo para defenderse
     public void defense(int damage){
         damage = 0;
     }

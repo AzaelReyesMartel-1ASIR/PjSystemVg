@@ -1,4 +1,4 @@
-package eldenpro.model.enemigos;
+package eldenpro.model.enemies;
 
 public class enemy {
     
