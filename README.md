@@ -1,6 +1,6 @@
 ## 💡 IDEA DE PROYECTO
 
-# 🎮 RPG por Turnos - *Elden Pro*
+# 🎮 RPG por Turnos - *Elden PRO - Expedition: DAW*
 
 Un sistema de juego por consola, basado en un RPG por turnos. No guarda datos entre ejecuciones, y se enfoca en demostrar herencia y polimorfismo en POO.
 
@@ -54,9 +54,14 @@ eldenpro/
 ```
 
 ## 🧙 Introducción al Juego
+  Al iniciar el programa, se muestra una introducción breve al mundo de *Elden PRO: Expedition DAW*.  
+  El jugador podrá decidir si quiere comenzar la aventura o salir del juego.
 
-Al iniciar el programa, se muestra una introducción breve al mundo de *Elden Pro*.  
-El jugador podrá decidir si quiere comenzar la aventura o salir del juego.
+  ## Contexto
+  Nos hemos basado en las mcánicas del juego llamado Clair Obscur: Expedition 33, le hemos añadido personalización y más dificultad para hacer una mezcla de Souls-like (Sekiro y Elden Ring) por turnos, así como añadiendo contexto en el mundo, por qué nuestro personaje está aquí y qué tenemos que hacer para terminar nuestra travesía.
+
+  Por favor, revisar el video de ejemplo de la jugabilidad de Clair Obscur: Expedtion 33:
+  [video de demostración](https://youtu.be/db2jQHWUaFo?si=wNJEoErFpaqcqGaB&t=170).
 
 ---
 

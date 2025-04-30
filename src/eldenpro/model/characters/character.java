@@ -1,6 +1,7 @@
 package eldenpro.model.characters;
 
 import eldenpro.model.enemies.enemy;
+import eldenpro.model.enums.damageTypes;
 
 // Superclase abstracta Personaje
 public abstract class character {
@@ -19,7 +20,7 @@ public abstract class character {
     }
 
     // Método abstracto que implementarán las subclases
-    public abstract void attack(enemy enemy);
+    public abstract void attack(enemy enemy, damageTypes damageTypes);
 
     // Getters y Setters
 
@@ -69,12 +70,19 @@ public abstract class character {
     }
 
     // Metodo para recibir daño
-    public void recieveDamage(int damage){
-        double reduction = this.armor / 100.0;
-        double finalDamage = damage - (damage * reduction);
-        int roundedDamage = (int) Math.round(finalDamage);
-
-        this.healthPoints -= roundedDamage;        
+    public void receiveDamage(int damage, damageTypes damageTypes){
+        if (damageTypes == damageTypes.PSY_DMG) {
+            double reduction = this.armor / 100.0;
+            double finalDamage = damage - (damage * reduction);
+            int roundedDamage = (int) Math.round(finalDamage);
+            this.healthPoints -= roundedDamage; 
+        } else {
+            double reduction = this.magicalArmor / 100.0;
+            double finalDamage = damage - (damage * reduction);
+            int roundedDamage = (int) Math.round(finalDamage);
+            this.healthPoints -= roundedDamage; 
+        }
+               
     }
 
     // Metodo para defenderse
@@ -82,6 +90,7 @@ public abstract class character {
         damage = 0;
     }
 
+    public abstract void analize(enemy enemy);
 }
 
 

@@ -4,26 +4,13 @@ import java.util.Random;
 import java.util.Scanner;
 
 import eldenpro.model.enemies.enemy;
+import eldenpro.model.enums.damageTypes;
 
 public class assassin extends physicalCaracter {
 
     public assassin(String name, int level, int healthPoints, int armor, int physicalDamage) {
         super(name, level, healthPoints, armor, physicalDamage);
     
-    }
-
-    @Override
-    public void attack(enemy enemy){
-        double chance = Math.random();
-        int finalDamage = getPhysicalDamage();
-
-        if (chance == 0.25) {
-            finalDamage *= 2;
-            System.out.println("¡Golpe critico! ¡Se duplica el daño!");
-        }
-
-        // TODO: enemy.recieveDamage(finalDamage);
-
     }
     
     // Clase de atacar por la espalda
@@ -55,7 +42,7 @@ public class assassin extends physicalCaracter {
                 if (op == 1) {
                     attackFromBehind(enemy);
                 } else {
-                    attack(enemy);
+                    attack(enemy, damageTypes.PSY_DMG);
                 }
                 break;
             case 2:
@@ -68,13 +55,31 @@ public class assassin extends physicalCaracter {
     }
 
     // Clase opcional - Cuchillos arrojadizos
-    public void throwingKnives(){
+    public void throwingKnives(enemy enemy){
         Random random = new Random();
         int totalDamage = random.nextInt(101) + 100;
 
-        System.out.println("Lanzas cuchillos arrojadizos al enemigo más próximo, quitas un total de: "+totalDamage+".");
+        System.out.println("Lanzas cuchillos arrojadizos al enemigo "+enemy+", quitas un total de: "+totalDamage+".");
 
-        // Desde que se lanzen los cuchillos, empieza la batalla automaticamente
-        // TODO: lanzar batalla
+    }
+
+    // Clase opcional - Parry: el asesino cuenta con un parado de 10% de probabilidad de evitar un ataque del enemigo
+    public boolean parry(enemy enemy){
+        double chance = Math.random();
+        if (chance < 0.1) {
+            System.out.println("¡Has realizado un parry! Evitaste el ataque del enemigo y contraatacas.");
+            return true;
+        } else {
+            System.out.println("¡El parry no se ha realizado, recibes daño!");
+            receiveDamage(enemy.getPhysicalDamage(), damageTypes.PSY_DMG);  // Si es daño físico
+            receiveDamage(enemy.getMagicalDamage(), damageTypes.MAG_DMG);    // Si es mágico
+        }
+
+        return false;
+    }
+
+    @Override
+    public void attack(enemy enemy, damageTypes damageTypes) {
+        
     }
 }

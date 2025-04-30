@@ -1,5 +1,7 @@
 package eldenpro.model.characters.physicalCharacters;
 
+import eldenpro.model.enemies.enemy;
+import eldenpro.model.enums.damageTypes;
 
 public class warrior extends physicalCaracter {
     public boolean defensivePosture;
@@ -45,6 +47,11 @@ public class warrior extends physicalCaracter {
             System.out.println("Aún no tienes la suficiente fuerza.");
         }
     
+    }
+
+    @Override
+    public void attack(enemy enemy, damageTypes damageTypes) {
+        // TODO Auto-generated method stub
     }
 
 }

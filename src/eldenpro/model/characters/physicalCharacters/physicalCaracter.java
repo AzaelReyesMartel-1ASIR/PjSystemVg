@@ -2,6 +2,7 @@ package eldenpro.model.characters.physicalCharacters;
 
 import eldenpro.model.characters.*;
 import eldenpro.model.enemies.enemy;
+import eldenpro.model.enums.damageTypes;
 
 public abstract class physicalCaracter extends character {
     public int physicalDamage;
@@ -20,16 +21,31 @@ public abstract class physicalCaracter extends character {
     }
 
     @Override
-    public void attack(enemy enemy){
+    public void attack(enemy enemy, damageTypes damageTypes){
 
         int Damage = getPhysicalDamage();
 
-        // TODO: enemy.recieveDamage(finalDamage);
+        enemy.receiveDamage(Damage, damageTypes.PSY_DMG);
     }
 
     public void analize(enemy enemy) {
-        //System.out.println(name + " analiza a " + enemy.getNombre() + ". Nivel: " + enemy.getNivel() + ", Salud: " + enemy.getSalud());
+        System.out.println(enemy);
     }
-    
+    @Override
+    // Metodo para recibir daño
+    public void receiveDamage(int damage, damageTypes damageTypes){
+        if (damageTypes == damageTypes.PSY_DMG) {
+            double reduction = this.armor / 100.0;
+            double finalDamage = damage - (damage * reduction);
+            int roundedDamage = (int) Math.round(finalDamage);
+            this.healthPoints -= roundedDamage; 
+        } else {
+            double reduction = this.magicalArmor / 100.0;
+            double finalDamage = damage - (damage * reduction);
+            int roundedDamage = (int) Math.round(finalDamage);
+            this.healthPoints -= roundedDamage; 
+        }
+               
+    }
 
 }
