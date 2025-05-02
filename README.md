@@ -9,48 +9,50 @@ Un sistema de juego por consola, basado en un RPG por turnos. No guarda datos en
 ## 📁 Estructura del Proyecto
 
 ```
-
 eldenpro/
-├── controller/                       # Aquí están los controladores del juego
-│   ├── BatallaController.java       # Controla lo que pasa en una batalla
-│   └── GameController.java          # Controla el funcionamiento general del juego
-
-├── model/                           # Todo lo que tiene que ver con los personajes y lógica del juego
-│   ├── batalla/
-│   │   └── Batalla.java             # Se encarga de simular una batalla entre personajes
-│   ├── enemigos/
-│   │   └── jefeFinal.java             # Clase para enemigos del juego
-|   |   └── ladron.java
-│   ├── Inventario/
-│   │   └── Item.java                # Para manejar los objetos que puede tener un personaje
-│   ├── personajes/
-│   │   ├── Personaje.java           # Clase base para todos los personajes
-│   │   ├── PersonajeFisico.java     # Subclase para personajes físicos
-│   │   ├── PersonajeMagico.java     # Subclase para personajes mágicos
-        ├── personajesFisicos/
-│   │       └── Guerrero.java            # Personaje que lucha cuerpo a cuerpo               
-│   │       └── Asesino.java             # Muy rápido y sigiloso
-│   │       └── Arquero.java             # Ataca con flechas
-|   |   ├── personajesMagicos/
-|   |       └── Mago.java                # Usa magia simple
-│   │       └── Hechicero.java           # Usa hechizos más avanzados
-
-│   └── habilidades/                 # Aquí están las interfaces con habilidades especiales
-│       └── Curable.java             # Para los personajes que se pueden curar
-│       └── Defendible.java          # Para los que pueden defenderse
-│       └── Magico.java              # Para los que usan magia
-│       └── Movilizable.java         # Para los que se pueden mover más rápido o especial
-│       └── Volador.java             # Para los que pueden volar
-├── view/                            # Todo lo que ve el usuario en consola
-│   ├── menuInicial.java
-│   └── seleccionPersonaje.java
-|   └── seleccionGeneral.java
-|   └── seleccionCueva.java
-|   └── seleccionCastillo.java
-|   └── menuBatalla.java
-
-├── Juego.java                        # Es el punto de entrada, donde empieza el programa
-
+├── controller/                       # Controladores del juego
+│   ├── battleController.java         # Controla las batallas
+│   ├── castleController.java         # Controla la exploración del castillo
+│   ├── caveController.java           # Controla la exploración de la cueva
+│   └── gameController.java           # Controla el flujo general del juego
+│
+├── model/                            # Lógica del juego y personajes
+│   ├── abilities/                    # Interfaces con habilidades especiales
+│   │   ├── defendible.java           # Para personajes que pueden defenderse
+│   │   ├── flying.java               # Para personajes que pueden volar
+│   │   ├── healable.java             # Para personajes que pueden curarse
+│   │   ├── magical.java              # Para personajes que usan magia
+│   │   └── mobilizable.java          # Para personajes con habilidades de movimiento
+│   │
+│   ├── characters/                   # Clases relacionadas con los personajes
+│   │   ├── character.java            # Clase base para todos los personajes
+│   │   ├── magicalCharacters/        # Personajes mágicos
+│   │   │   ├── mage.java             # Clase para el Mago
+│   │   │   ├── magicalCharacter.java # Clase base para personajes mágicos
+│   │   │   └── wizard.java           # Clase para el Hechicero
+│   │   └── physicalCharacters/       # Personajes físicos
+│   │       ├── archer.java           # Clase para el Arquero
+│   │       ├── assassin.java         # Clase para el Asesino
+│   │       ├── physicalCaracter.java # Clase base para personajes físicos
+│   │       └── warrior.java          # Clase para el Guerrero
+│   │
+│   ├── enemies/                      # Clases relacionadas con los enemigos
+│   │   ├── enemy.java                # Clase base para todos los enemigos
+│   │   ├── finalBoss.java            # Clase para el Jefe Final
+│   │   └── thief.java                # Clase para el Ladrón
+│   │
+│   └── enums/                        # Enumeraciones del juego
+│       ├── classes.java              # Enumeración de clases de personajes
+│       └── damageTypes.java          # Enumeración de tipos de daño
+│
+├── view/                             # Interfaz de usuario en consola
+│   ├── castleSelector.java           # Menú de opciones del castillo
+│   ├── caveSelector.java             # Menú de opciones de la cueva
+│   ├── characterSelection.java       # Menú para seleccionar personaje
+│   └── startMenu.java                # Menú inicial del juego
+│
+├── game.java                         # Punto de entrada del programa
+└── LICENSE                           # Licencia del proyecto
 ```
 
 ## 🧙 Introducción al Juego
