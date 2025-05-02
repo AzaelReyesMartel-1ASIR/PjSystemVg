@@ -4,28 +4,15 @@ import java.util.Scanner;
 
 import eldenpro.model.enemies.*;
 import eldenpro.model.enums.damageTypes;
+import eldenpro.model.abilities.defendible;
+import eldenpro.model.abilities.magical;
 
-public class wizard extends magicalCharacter {
+public class wizard extends magicalCharacter implements magical, defendible {
 
     public int manaPoints;
 
     public wizard(String name, int level, int healthPoints, int magicalPoints, int armor, int magicalDamage) {
         super(name, level, healthPoints, magicalPoints, armor, magicalDamage);
-    }
-
-    // Metodo abstracto heredado de la clase character
-    @Override
-    public void attack(enemy enemy, damageTypes damageTypes){
-        if (canSummon()){
-            System.out.println("El personaje realiza un summon de uno de los esbirros disponibles.");
-            manaPoints -= 5; // El coste de cada casteo es de 5 puntos de maná
-        } else {
-            // Al no tener puntos de maná, se regeneran automaticamente los puntos por el coste de un turno
-            System.out.println("¡No puede hacer summon!"); 
-            System.out.println("Regenerando puntos de maná...");
-            manaPoints += 40;
-        }
-
     }
 
     // Comprobar si hay puntos de maná para castear esbirros
@@ -35,10 +22,9 @@ public class wizard extends magicalCharacter {
         return false;
     }
 
-    // TODO: Crear objetos de clase esbirro, añadir los esbirros a un arraylist de
-    // máximo 3 esbirros
+    
     // Metodo para summonear un esbirro
-    public void summon() {
+    public void summon(enemy enemy, damageTypes damageTypes) {
         if (canSummon()) {
             int op = 4;
             Scanner sc = new Scanner(System.in);
@@ -47,17 +33,19 @@ public class wizard extends magicalCharacter {
             op = sc.nextInt();
             switch (op) {
                 case 1:
-                    System.out.println("Has elegido el Esbirro tanque, este tiene 100 puntos de vida y 30 de armadura");
+                    System.out.println("Has elegido el Esbirro mago, hace 300 de daño mágico");
                     manaPoints--;
+                    enemy.receiveDamage(300, damageTypes.MAG_DMG);
                     break;
                 case 2:
-                    System.out.println("Has elegido el Esbirro sanador, este tiene 50 puntos de vida y cura 250 puntos de vida");
+                    System.out.println("Has elegido el Esbirro sanador, cura 250 puntos de vida");
                     manaPoints--;
                     healthPoints += 250;
                     break;
                 case 3:
-                    System.out.println("Has elegido el Esbirro asesino, tiene 100 puntos de vida, realiza 3 cortes y quita 175 de vida extra");
+                    System.out.println("Has elegido el Esbirro asesino, realiza 3 cortes y quita 175 de vida extra");
                     manaPoints--;
+                    enemy.receiveDamage(175, damageTypes.PSY_DMG);
                     break;
                 default:
                     System.out.println("Elije uno de los 3 esbirros.");
@@ -105,4 +93,53 @@ public class wizard extends magicalCharacter {
             manaPoints = Math.min(manaPoints + 20, 40);
         }
     }
+
+    @Override
+    public void shieldDefense(enemy enemy, int incomingDamage){
+        System.out.println("El hechicero crea un escudo protector de hielo.");
+        double chance = Math.random();
+
+        if (chance <= 0.25) {
+            System.out.println("¡Contraataca con su esbirro asesino!");
+            if (enemy.getTipo() == damageTypes.PSY_DMG) {
+                enemy.receiveDamage(175, damageTypes.PSY_DMG); // Aplica el mismo daño físico al enemigo
+            } else {
+                enemy.receiveDamage(300, damageTypes.MAG_DMG); // Aplica el mismo daño mágico al enemigo
+            }
+        } else {
+            System.out.println("Bloquea el ataque con su escudo mágico.");
+            incomingDamage = 0;
+        }
+    }
+
+    // Metodo abstracto heredado de la clase character
+    @Override
+    public void attack(enemy enemy, damageTypes damageTypes){
+        Scanner sc = new Scanner(System.in);
+        int op = 5;
+        System.out.println("¿qué decides hacer?\n 1.Atacar \n 2. Defenderse \n 3.Regenerar inteligencia \n 4. Usar tu escudo mágico");
+        op = sc.nextInt();
+        switch (op) {
+            case 1:
+                summon(enemy, damageTypes);
+                break;
+            case 2:
+            if (enemy.getTipo() == damageTypes.PSY_DMG) {
+                defense(enemy.getPhysicalDamage());
+            } else {
+                defense(enemy.getMagicalDamage());
+            }
+            case 3:
+                regenManaPoints();
+                break;
+            case 4:
+                shieldDefense(enemy, enemy.getPhysicalDamage());
+            default:
+                break;
+        }
+        
+
+    }
+
+    
 }

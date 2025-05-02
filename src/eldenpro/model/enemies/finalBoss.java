@@ -7,9 +7,24 @@ public class finalBoss extends enemy {
 
 
 
-    public finalBoss(int healthPoints, int physicalArmor, int magicalArmor, int level, String name) {
-        super(healthPoints, physicalArmor, magicalArmor, level, level, level, name);
+    public finalBoss(int healthPoints, int physicalArmor, int magicalArmor, int level, String name, damageTypes tipo) {
+        super(healthPoints, physicalArmor, magicalArmor, level, level, level, name, tipo);
 
+    }
+
+    public void sweepingEdge(character character){
+        System.out.println("El jefe "+getName()+" ataca con un barrido de espada");
+        attack(character, damageTypes.PSY_DMG);
+    }
+ 
+    public void celestialSpear(character character){
+        System.out.println("El jefe"+getName()+" ataca con una lanza celestial");
+        attack(character, damageTypes.MAG_DMG);
+    }
+
+    public void finalSlash(character character){
+        System.out.println("El jefe "+getName()+" ataca con una cortada final");
+        attack(character, damageTypes.PSY_DMG);
     }
 
     @Override
@@ -32,19 +47,27 @@ public class finalBoss extends enemy {
         }
     }
 
-    public void sweepingEdge(character character){
-        System.out.println("El jefe "+getName()+" ataca con un barrido de espada");
-        attack(character, damageTypes.PSY_DMG);
-    }
- 
-    public void celestialSpear(character character){
-        System.out.println("El jefe"+getName()+" ataca con una lanza celestial");
-        attack(character, damageTypes.MAG_DMG);
-    }
-
-    public void finalSlash(character character){
-        System.out.println("El jefe "+getName()+" ataca con una cortada final");
-        attack(character, damageTypes.PSY_DMG);
+    @Override
+    public void receiveDamage(int damage, damageTypes damageTypes) {
+        if (this instanceof finalBoss) { // Uso del instanceof para detectar el tipo específico
+            if (damageTypes == damageTypes.MAG_DMG) {
+                // Doble daño mágico
+                setHealthPoints(getHealthPoints() - damage * 2);
+            } else {
+                // Reducción por armadura y luego + 50%
+                int reducedDamage = (int) (damage * (1 - getPhysicalArmor() / 100.0));
+                int finalDamage = (int) (reducedDamage * 1.5);
+                setHealthPoints(getHealthPoints() - finalDamage * 2);
+            }
+        } else {
+            // Lógica genérica para otros personajes
+            if (damageTypes == damageTypes.MAG_DMG) {
+                setHealthPoints(getHealthPoints() - damage * 2);
+            } else {
+                int reducedDamage = (int) (damage * (1 - getPhysicalArmor() / 100.0));
+                setHealthPoints(getHealthPoints() - reducedDamage * 2);
+            }
+        }
     }
 
 }

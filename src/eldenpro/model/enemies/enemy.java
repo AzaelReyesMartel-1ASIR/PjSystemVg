@@ -11,9 +11,10 @@ public abstract class enemy {
     private int physicalDamage;
     private int magicalDamage;
     private String name;
+    private damageTypes tipo;
 
 
-    public enemy(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int magicalDamage, String name) {
+    public enemy(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int magicalDamage, String name, damageTypes tipo) {
         this.healthPoints = healthPoints;
         this.physicalArmor = physicalArmor;
         this.magicalArmor = magicalArmor;
@@ -21,6 +22,7 @@ public abstract class enemy {
         this.physicalDamage = physicalDamage;
         this.magicalDamage = magicalDamage;
         this.name = name;
+        this.tipo = tipo;
     }
 
 
@@ -105,6 +107,14 @@ public abstract class enemy {
         this.magicalDamage = magicalDamage;
     }
 
+    public damageTypes getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(damageTypes tipo) {
+        this.tipo = tipo;
+    }
+
     public abstract void attack(character character, damageTypes damageTypes);
 
 
@@ -115,8 +125,10 @@ public abstract class enemy {
 
     @Override
     public String toString() {
-        return "enemy [healthPoints=" + healthPoints + ", physicalArmor=" + physicalArmor + ", MagicalArmor="
-                + magicalArmor + ", getHealthPoints()=" + getHealthPoints() + ", getPhysicalArmor()="
-                + getPhysicalArmor() + ", getMagicalArmor()=" + getMagicalArmor() + "]";
+        return "enemy, "+getName()+" puntos de salud: " + getHealthPoints() + ", armadura fisica: "
+                + getPhysicalArmor() + ", armadura mágica: " + getMagicalArmor() + "]";
     }
+
+
+    
 }

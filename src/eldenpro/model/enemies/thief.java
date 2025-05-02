@@ -7,8 +7,8 @@ public class thief extends enemy {
     private int physicalDamage;
     private int agilityPoints; // Velocidad de ataque
 
-    public thief(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int agilityPoints, String name) {
-        super(healthPoints, physicalArmor, magicalArmor, level, agilityPoints, agilityPoints, name);
+    public thief(int healthPoints, int physicalArmor, int magicalArmor, int level, int physicalDamage, int agilityPoints, String name, damageTypes tipo) {
+        super(healthPoints, physicalArmor, magicalArmor, level, agilityPoints, agilityPoints, name, tipo);
         this.agilityPoints = agilityPoints;
         this.physicalDamage = physicalDamage;
     }
@@ -91,6 +91,7 @@ public class thief extends enemy {
         "• Agilidad:        " + getAgilityPoints() + "\n" +
         "• Armadura mágica: " + getMagicalArmor() + "\n" +
         "• Nivel:           " + getLevel() + "\n" +
+        "• Tipo de daño:    " + getTipo() + "\n" +
         "=============================";
     }
 
