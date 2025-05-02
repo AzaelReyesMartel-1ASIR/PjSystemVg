@@ -16,6 +16,11 @@ public class warrior extends physicalCaracter implements defendible {
         this.strengthPoints = strengthPoints;
     }
 
+    public void atacar(){
+        // Implementación del ataque
+        System.out.println(getName() + " - GUERRERO ataca al enemigo.");
+    }
+
     public void setDefensivePosture(boolean defensivePosture) {
         this.defensivePosture = defensivePosture;
     }
@@ -28,8 +33,8 @@ public class warrior extends physicalCaracter implements defendible {
         return strengthPoints;
     }
     public void chargeAttack(){
+        System.out.println("El GUERRERO carga su ataque.");
         physicalDamage *=2;
-        // TODO: El daño tiene que durar solo 2 turnos
     }
 
     @Override
@@ -85,9 +90,18 @@ public class warrior extends physicalCaracter implements defendible {
 
     @Override
     public void attack(enemy enemy, damageTypes damageTypes) {
-        Scanner sc = new Scanner(System.in);
-        int op = 5;
-        System.out.println("¿qué decides hacer?\n 1.Adoptar postura defensiva \n 2. Adoptar postura ofensiva \n 3.Defensa de escudo \n 4. Cargar ataque \n 5. Ataque con espada\n 6. Defensa");
+        Scanner sc = new Scanner(System.in); // Crear un Scanner para leer la entrada del usuario
+        System.out.println("¿Qué decides hacer?");
+        System.out.println("1. Adoptar postura defensiva");
+        System.out.println("2. Adoptar postura ofensiva");
+        System.out.println("3. Defensa de escudo");
+        System.out.println("4. Cargar ataque");
+        System.out.println("5. Ataque con espada");
+        System.out.println("6. Defensa");
+        System.out.print("Elige una opción: ");
+        
+        int op = sc.nextInt(); // Leer la opción del usuario
+
         switch (op) {
             case 1:
                 defensivePosture();
@@ -96,7 +110,7 @@ public class warrior extends physicalCaracter implements defendible {
                 offensivePosture();
                 break;
             case 3:
-                if (enemy.getTipo() == damageTypes.PSY_DMG) {
+                if (enemy.getTipo() == eldenpro.model.enums.damageTypes.PSY_DMG) {
                     shieldDefense(enemy, enemy.getPhysicalDamage());
                 } else {
                     shieldDefense(enemy, enemy.getMagicalDamage());
@@ -109,18 +123,15 @@ public class warrior extends physicalCaracter implements defendible {
                 swordAttack(enemy, physicalDamage, damageTypes);
                 break;
             case 6:
-                if (enemy.getTipo() == damageTypes.PSY_DMG) {
+                if (enemy.getTipo() == eldenpro.model.enums.damageTypes.PSY_DMG) {
                     defense(enemy.getPhysicalDamage());
                 } else {
                     defense(enemy.getMagicalDamage());
                 }
                 break;
             default:
-                System.out.println("Por favor selecciona una opción válida");
+                System.out.println("Por favor selecciona una opción válida.");
                 break;
         }
     }
-
-    
-
 }

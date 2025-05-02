@@ -25,7 +25,7 @@ public abstract class physicalCaracter extends character {
 
         int Damage = getPhysicalDamage();
 
-        enemy.receiveDamage(Damage, damageTypes.PSY_DMG);
+        enemy.receiveDamage(Damage, eldenpro.model.enums.damageTypes.PSY_DMG);
     }
 
     public void analize(enemy enemy) {
@@ -34,7 +34,7 @@ public abstract class physicalCaracter extends character {
     @Override
     // Metodo para recibir daño
     public void receiveDamage(int damage, damageTypes damageTypes){
-        if (damageTypes == damageTypes.PSY_DMG) {
+        if (damageTypes == eldenpro.model.enums.damageTypes.PSY_DMG) {
             double reduction = this.armor / 100.0;
             double finalDamage = damage - (damage * reduction);
             int roundedDamage = (int) Math.round(finalDamage);

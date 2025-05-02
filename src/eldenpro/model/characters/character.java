@@ -20,6 +20,8 @@ public abstract class character {
     }
 
     // Método abstracto que implementarán las subclases
+    public abstract void atacar();
+
     public abstract void attack(enemy enemy, damageTypes damageTypes);
 
     // Getters y Setters
@@ -70,8 +72,8 @@ public abstract class character {
     }
 
     // Metodo para recibir daño
-    public void receiveDamage(int damage, damageTypes damageTypes){
-        if (damageTypes == damageTypes.PSY_DMG) {
+    public void receiveDamage(int damage, damageTypes damageTypes) {
+        if (damageTypes == eldenpro.model.enums.damageTypes.PSY_DMG) {
             double reduction = this.armor / 100.0;
             double finalDamage = damage - (damage * reduction);
             int roundedDamage = (int) Math.round(finalDamage);
@@ -82,7 +84,6 @@ public abstract class character {
             int roundedDamage = (int) Math.round(finalDamage);
             this.healthPoints -= roundedDamage; 
         }
-               
     }
 
     // Metodo para defenderse

@@ -7,14 +7,19 @@ import eldenpro.model.enemies.enemy;
 import eldenpro.model.enums.damageTypes;
 
 public class archer extends physicalCaracter implements flying {
-    public int arrows;
+    public int arrows; // Flechas disponibles
     public int agilityPoints; // Velocidad de ataque
-
+    private boolean isFlying = false; // Estado de vuelo
 
     public archer(String name, int level, int healthPoints, int armor, int physicalDamage, int arrows, int agilityPoints) {
         super(name, level, healthPoints, armor, physicalDamage);
         this.arrows = arrows;
         this.agilityPoints = agilityPoints;
+    }
+
+    public void atacar(){
+        // Implementación del ataque
+        System.out.println(getName() + " - ARQUERO ataca al enemigo.");
     }
 
     public int getArrows() {
@@ -33,94 +38,71 @@ public class archer extends physicalCaracter implements flying {
         this.agilityPoints = agilityPoints;
     }
 
-    // Cada batalla se puede disparar una flecha que tiene probabilidad de impactar en la cabeza o en el cuerpo
-    public void shootingArrows(enemy enemy){
-        int finalDamage;
-        if(arrows > 0){
+    public boolean isFlying() {
+        return isFlying;
+    }
+
+    public void resetFlying() {
+        isFlying = false; // Restablece el estado de vuelo
+    }
+
+    // Método para disparar flechas
+    public void shootingArrows(enemy enemy) {
+        if (arrows > 0) {
             if (Math.random() <= 0.10) {
-                System.out.println("Tiro en la cabeza! El enemigo se queda inconsciente y recuperas tu flecha.");
-                finalDamage = physicalDamage * 2;
-                enemy.receiveDamage(finalDamage, damageTypes.PSY_DMG);
-                agilityPoints += 100;
+                System.out.println("¡Tiro en la cabeza! El enemigo queda inconsciente.");
+                enemy.receiveDamage(physicalDamage * 2, damageTypes.PSY_DMG); // Daño crítico
             } else {
-                System.out.println("Falló. Pierdes una flecha y el turno.");
-                arrows-=2;
-                agilityPoints += 5;
+                System.out.println("Fallaste el tiro.");
+                arrows--; // Pierdes una flecha
             }
-            
         } else {
-            System.out.println("No tienes flechas disponibles. ¡Intenta recargar!");
+            System.out.println("No tienes flechas disponibles.");
         }
     }
 
-    // Recarga de flechas, si tiene puntos de agilidad puede cargar varias flechas en un turno
-    public void reloadArrows(){
+    // Método para recargar flechas
+    public void reloadArrows() {
         if (arrows < 5) {
-            System.out.println("Te quedan pocas flechas. Recargando...");
+            System.out.println("Recargando flechas...");
             arrows += 10;
         } else {
-            System.out.println("Tienes bastantes flechas: "+getArrows()+" ¿quieres recargar? Perderás un turno. \n 1.Sí \n 2. No");
-            Scanner sc = new Scanner(System.in);
-            int op = sc.nextInt();
-            switch (op) {
-                case 1:
-                    arrows += 5;
-                    System.out.println("Encontrando flechas de enemigos caidos encontraste 5 flechas.");
-                    break;
-                case 2:
-                    System.out.println("No recargaste.");
-                    break;
-                default:
-                    System.out.println("Opción inválida.");
-                    break;
-            }
+            System.out.println("Tienes suficientes flechas.");
         }
     }
 
-    // Carga rápida, si tiene puntos de agilidad puede cargar varias flechas en un turno
-    public boolean fastCharge(){
-        if (agilityPoints > 10) {
-            System.out.println("¡Puedes cargar varias flechas!");
-            setArrows(getArrows() + 20);
-            return true;
-        }
-        return false;
-    }
-
-    // TODO: añadir el metodo volar en el mapa
     @Override
     public void fly() {
-        System.out.println("El arquero puede volar, revisa el mapa");
+        System.out.println(getName() + " vuela hacia una posición elevada.");
+        isFlying = true; // Activa el estado de vuelo
     }
 
     @Override
     public void attack(enemy enemy, damageTypes damageTypes) {
         Scanner sc = new Scanner(System.in);
-        int op = 5;
-        System.out.println("¿qué decides hacer?\n 1.Disparar flechas \n 2. Defenderse \n 3.Recargar flechas \n 4. Carga rápida");
-        op = sc.nextInt();
+        System.out.println("¿Qué decides hacer?");
+        System.out.println("1. Disparar flechas");
+        System.out.println("2. Defenderse");
+        System.out.println("3. Recargar flechas");
+        System.out.println("4. Volar (Esquivar el próximo ataque)");
+        int op = sc.nextInt();
+
         switch (op) {
             case 1:
                 shootingArrows(enemy);
                 break;
             case 2:
-            if (enemy.getTipo() == damageTypes.PSY_DMG) {
-                defense(enemy.getPhysicalDamage());
-            } else {
-                defense(enemy.getMagicalDamage());
-            }
+                System.out.println("Defendiéndote del ataque.");
                 break;
             case 3:
                 reloadArrows();
                 break;
             case 4:
-                fastCharge();
+                fly();
                 break;
             default:
-                System.out.println("Por favor elije que hacer");
+                System.out.println("Opción no válida.");
                 break;
         }
     }
-
-
 }
