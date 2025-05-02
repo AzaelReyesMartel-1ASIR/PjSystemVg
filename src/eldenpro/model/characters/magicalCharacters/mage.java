@@ -16,6 +16,11 @@ public class mage extends magicalCharacter implements magical, healable {
         this.intelligencePoints = intelligencePoints;
     }
 
+    public void atacar(){
+        // Implementación del ataque
+        System.out.println(getName() + " - HECHICERO ataca al enemigo.");
+    }
+
     public int getIntelligencePoints() {
         return intelligencePoints;
     }
@@ -38,7 +43,7 @@ public class mage extends magicalCharacter implements magical, healable {
                 intelligencePoints -=2; // El coste de cada casteo es de 2 puntos de maná
                 Random rand = new Random();
                 int damage = rand.nextInt(getMagicalDamage()) + 1;
-                enemy.receiveDamage(damage, damageTypes.MAG_DMG);    
+                enemy.receiveDamage(damage, eldenpro.model.enums.damageTypes.MAG_DMG);    
             } else {
                 // Al no tener puntos de maná, se regeneran automaticamente los puntos por el coste de un turno
                 System.out.println("¡No puede hacer daño!"); 
@@ -47,7 +52,7 @@ public class mage extends magicalCharacter implements magical, healable {
             }
                 break;
             case 2:
-            if (enemy.getTipo() == damageTypes.PSY_DMG) {
+            if (enemy.getTipo() == eldenpro.model.enums.damageTypes.PSY_DMG) {
                 defense(enemy.getPhysicalDamage());
             } else {
                 defense(enemy.getMagicalDamage());

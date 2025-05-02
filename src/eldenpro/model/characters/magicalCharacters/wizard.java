@@ -15,6 +15,11 @@ public class wizard extends magicalCharacter implements magical, defendible {
         super(name, level, healthPoints, magicalPoints, armor, magicalDamage);
     }
 
+    public void atacar(){
+        // Implementación del ataque
+        System.out.println(getName() + " - MAGO ataca al enemigo.");
+    }
+
     // Comprobar si hay puntos de maná para castear esbirros
     public boolean canSummon() {
         if (manaPoints > 0)
@@ -35,7 +40,7 @@ public class wizard extends magicalCharacter implements magical, defendible {
                 case 1:
                     System.out.println("Has elegido el Esbirro mago, hace 300 de daño mágico");
                     manaPoints--;
-                    enemy.receiveDamage(300, damageTypes.MAG_DMG);
+                    enemy.receiveDamage(300, eldenpro.model.enums.damageTypes.MAG_DMG);
                     break;
                 case 2:
                     System.out.println("Has elegido el Esbirro sanador, cura 250 puntos de vida");
@@ -45,7 +50,7 @@ public class wizard extends magicalCharacter implements magical, defendible {
                 case 3:
                     System.out.println("Has elegido el Esbirro asesino, realiza 3 cortes y quita 175 de vida extra");
                     manaPoints--;
-                    enemy.receiveDamage(175, damageTypes.PSY_DMG);
+                    enemy.receiveDamage(175, eldenpro.model.enums.damageTypes.PSY_DMG);
                     break;
                 default:
                     System.out.println("Elije uno de los 3 esbirros.");
@@ -54,6 +59,7 @@ public class wizard extends magicalCharacter implements magical, defendible {
         } else {
             System.out.println("la invocación ha sido fallida!");
         }
+        
     }
 
     @Override
@@ -124,7 +130,7 @@ public class wizard extends magicalCharacter implements magical, defendible {
                 summon(enemy, damageTypes);
                 break;
             case 2:
-            if (enemy.getTipo() == damageTypes.PSY_DMG) {
+            if (enemy.getTipo() == eldenpro.model.enums.damageTypes.PSY_DMG) {
                 defense(enemy.getPhysicalDamage());
             } else {
                 defense(enemy.getMagicalDamage());
@@ -137,9 +143,5 @@ public class wizard extends magicalCharacter implements magical, defendible {
             default:
                 break;
         }
-        
-
     }
-
-    
 }

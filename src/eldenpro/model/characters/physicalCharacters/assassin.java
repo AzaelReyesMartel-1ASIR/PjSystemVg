@@ -15,6 +15,11 @@ public class assassin extends physicalCaracter implements healable, mobilizable 
 
     }
 
+    public void atacar(){
+        // Implementación del ataque
+        System.out.println(getName() + " - ASESINO ataca al enemigo.");
+    }
+
     // Clase de atacar por la espalda
     public void attackFromBehind(enemy enemy, damageTypes damageTypes) {
         double chance = Math.random();
@@ -86,7 +91,7 @@ public class assassin extends physicalCaracter implements healable, mobilizable 
 
     public void daggerAndStagger(enemy enemy, damageTypes damageTypes) {
         System.out.println("Realizas un combo de cortes con tu daga");
-        receiveDamage(getPhysicalDamage(), damageTypes.PSY_DMG); // Daño físico
+        receiveDamage(getPhysicalDamage(), eldenpro.model.enums.damageTypes.PSY_DMG); // Daño físico
     }
 
     @Override
@@ -103,10 +108,10 @@ public class assassin extends physicalCaracter implements healable, mobilizable 
         op = sc.nextInt();
         switch (op) {
             case 1:
-                throwingKnives(enemy, damageTypes.PSY_DMG);
+                throwingKnives(enemy, eldenpro.model.enums.damageTypes.PSY_DMG);
                 break;
             case 2:
-                if (enemy.getTipo() == damageTypes.PSY_DMG) {
+                if (enemy.getTipo() == eldenpro.model.enums.damageTypes.PSY_DMG) {
                     defense(enemy.getPhysicalDamage());
                 } else {
                     defense(enemy.getMagicalDamage());
@@ -148,7 +153,6 @@ public class assassin extends physicalCaracter implements healable, mobilizable 
         hide(enemy);
     }
 
-    // TODO: Añadir estos metodos en las opciones que no sean batallas
     public void useMovementAbility(enemy enemy) {
         Scanner sc = new Scanner(System.in);
         System.out.println("Elige una habilidad de movimiento:");
